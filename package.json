@@ -4,7 +4,10 @@
   "description": "Easy to start a React project~",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "webpack-build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
+    "clean": "rimraf dist",
+    "build": "npm run clean && npm run webpack-build"
   },
   "repository": {
     "type": "git",
@@ -33,12 +36,14 @@
     "babel-polyfill": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "cross-env": "^3.1.2",
     "eslint": "^3.7.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^1.16.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.0",
     "react-hot-loader": "^3.0.0-beta.5",
+    "rimraf": "^2.5.4",
     "webpack": "^2.1.0-beta.25",
     "webpack-dev-server": "^2.1.0-beta.8"
   }

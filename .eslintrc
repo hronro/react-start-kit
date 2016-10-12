@@ -10,8 +10,12 @@
         "eslint:recommended",
         "plugin:react/recommended"
     ],
+    "parser": "babel-eslint",
     "parserOptions": {
+        "allowImportExportEverywhere": true,
+        "ecmaVersion": 8,
         "ecmaFeatures": {
+            "classes": true,
             "jsx": true
         },
         "sourceType": "module"
@@ -30,8 +34,6 @@
         "eol-last": 1,
         "no-trailing-spaces": ["warn", { "skipBlankLines": true }],
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "import/no-extraneous-dependencies": 0,
-        "react/no-unused-prop-types": 0,
-        "react/style-prop-object": 0
+        "import/no-extraneous-dependencies": 0
     }
 }

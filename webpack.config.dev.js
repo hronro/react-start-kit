@@ -21,16 +21,19 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['babel'],
+        loaders: ['babel-loader'],
         include: path.join(__dirname, 'src')
       },
       {
         test: /\.css$/,
         loaders: [
-          'style?sourceMap',
-          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+          'style-loader?sourceMap',
+          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
         ],
       }
     ],
-  }
+  },
+  performance: {
+    hints: false,
+  },
 };

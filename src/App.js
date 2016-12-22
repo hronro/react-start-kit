@@ -10,13 +10,15 @@ const fn = e => {
 }
 
 const App = () => (
-  <div styleName="demo" onClick={fn}>
-    <span>Demo</span>
+  <div>
+    <button styleName="demo" onClick={fn}>
+      <span>Demo</span>
+    </button>
     <Counter />
   </div>
 );
 
-class Counter extends Component {
+const Counter = CSSModules(class Counter extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,14 +33,14 @@ class Counter extends Component {
 
   render() {
     return (
-      <div>
+      <div styleName="counter">
+        <h1>Counter</h1>
         { this.state.count }
         <br />
         <button onClick={this.changeCount}>click</button>
       </div>
     );
   }
-
-}
+}, styles, {allowMultiple: true});
 
 export default CSSModules(App, styles, {allowMultiple: true});

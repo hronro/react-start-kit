@@ -4,7 +4,7 @@
   "description": "Easy to start a React project~",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "babel-node --presets=latest --plugins=transform-class-properties,transform-object-rest-spread -- server.js",
     "webpack-build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "clean": "rimraf dist",
     "build": "npm run clean && npm run webpack-build"
@@ -30,6 +30,7 @@
     "react-dom": "^15.4.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
@@ -44,6 +45,8 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.8.0",
     "express": "^4.14.0",
+    "koa": "2.0.0-alpha.7",
+    "koa-webpack-middleware": "^1.0.3",
     "react-hot-loader": "^3.0.0-beta.6",
     "rimraf": "^2.5.4",
     "webpack": "^2.2.0-rc.3",

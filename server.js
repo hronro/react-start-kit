@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 
+import spdy from 'spdy';
 import Koa from 'koa';
 import webpack from 'webpack';
 import { devMiddleware, hotMiddleware } from 'koa-webpack-middleware';
@@ -50,6 +51,30 @@ app.on('error', function(err){
 });
 
 
-app.listen(3000, () => {
-  console.log('Listening at 🌏  http://localhost:3000/');
-});
+const spdyOption = {
+  // Private key
+  key: fs.readFileSync(path.join(__dirname, './ssl/localhost.key')),
+
+  // Fullchain file or cert file (prefer the former)
+  cert: fs.readFileSync(path.join(__dirname, './ssl/localhost.crt')),
+
+  // **optional** SPDY-specific options
+  spdy: {
+    protocols: ['h2', 'spdy/3.1', 'http/1.1'],
+    plain: false,
+    connection: {
+      windowSize: 1024 * 1024, // Server's window size
+      // **optional** if true - server will send 3.1 frames on 3.0 *plain* spdy
+      autoSpdy31: false,
+    },
+  },
+};
+
+spdy.createServer(spdyOption, app.callback()).listen(3000, err => {
+  if(err) {
+    console.log(err);
+    return;
+  }
+
+  console.log('Listening at 🌏  https://localhost:3000');
+})

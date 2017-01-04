@@ -4,10 +4,15 @@ import fs from 'fs';
 import Koa from 'koa';
 import webpack from 'webpack';
 import { devMiddleware, hotMiddleware } from 'koa-webpack-middleware';
+import mount from 'koa-mount';
+import convert from 'koa-convert';
+import serve from 'koa-static';
+import getRouter from 'koa-router';
 
 import webpackConfig from './webpack.config.dev';
 
 const app = new Koa();
+const router = getRouter();
 const compiler = webpack(webpackConfig);
 
 app.use(devMiddleware(compiler, {
@@ -29,8 +34,13 @@ app.use(devMiddleware(compiler, {
 
 app.use(hotMiddleware(compiler));
 
-// send index.html
-app.use(ctx => {
+// set static folder
+app.use(mount('/static', new Koa().use(convert(serve(path.join(__dirname, '/static'))))));
+
+app.use(router.routes()).use(router.allowedMethods());
+
+// send index.html for any path
+router.get('*', ctx => {
   ctx.type = 'text/html; charset=utf-8';
   ctx.body = fs.readFileSync(path.join(__dirname, './index.html'));
 });

@@ -21,7 +21,7 @@ app.use(devMiddleware(compiler, {
   noInfo: true,
 
   // display nothing to the console
-  quiet: true,
+  quiet: false,
 
   // public path to bind the middleware to
   // use the same as in webpack

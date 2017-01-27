@@ -30,17 +30,17 @@
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.21.0",
+    "babel-cli": "^6.22.2",
+    "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
-    "babel-plugin-transform-class-properties": "^6.19.0",
-    "babel-plugin-transform-decorators": "^6.13.0",
-    "babel-plugin-transform-object-rest-spread": "^6.20.2",
-    "babel-preset-latest": "^6.16.0",
-    "babel-preset-react": "^6.16.0",
+    "babel-plugin-transform-class-properties": "^6.22.0",
+    "babel-plugin-transform-decorators": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.22.0",
+    "babel-preset-latest": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
     "cross-env": "^3.1.4",
-    "eslint": "^3.13.0",
+    "eslint": "^3.14.1",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
@@ -53,6 +53,6 @@
     "koa-webpack-middleware": "^1.0.3",
     "react-hot-loader": "^3.0.0-beta.6",
     "rimraf": "^2.5.4",
-    "webpack": "^2.2.0-rc.3"
+    "webpack": "^2.2.0"
   }
 }

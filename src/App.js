@@ -20,7 +20,9 @@ const App = () => (
   </div>
 )
 
-const Counter = CSSModules(class Counter extends Component {
+// Use decorator to inject css modules to React components.
+@CSSModules(styles, {allowMultiple: true})
+class Counter extends Component {
   state = {
     count: 0
   }
@@ -44,6 +46,8 @@ const Counter = CSSModules(class Counter extends Component {
       </div>
     )
   }
-}, styles, {allowMultiple: true})
+}
 
+// `App` is a pure function component, which can't use decorator.
+// Use high order component instead.
 export default CSSModules(App, styles, {allowMultiple: true})

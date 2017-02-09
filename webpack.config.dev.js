@@ -1,5 +1,5 @@
-var path = require('path');
-var webpack = require('webpack');
+var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
   devtool: 'source-map',
@@ -30,11 +30,11 @@ module.exports = {
           'style-loader?sourceMap',
           'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
           'postcss-loader'
-        ],
+        ]
       }
-    ],
+    ]
   },
   performance: {
-    hints: false,
-  },
-};
+    hints: false
+  }
+}

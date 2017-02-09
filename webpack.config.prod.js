@@ -1,5 +1,5 @@
-var path = require('path');
-var webpack = require('webpack');
+var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
   devtool: false,
@@ -37,7 +37,7 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel-loader'],
-        include: path.join(__dirname, 'src'),
+        include: path.join(__dirname, 'src')
       },
       {
         test: /\.css$/,
@@ -45,8 +45,8 @@ module.exports = {
           'style-loader',
           'css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]',
           'postcss-loader'
-        ],
+        ]
       }
-    ],
+    ]
   }
-};
+}

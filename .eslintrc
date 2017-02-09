@@ -6,9 +6,11 @@
         "node": true
     },
     "extends": [
-        "airbnb",
-        "eslint:recommended",
-        "plugin:react/recommended"
+        "standard",
+        "plugin:jsx-a11y/recommended",
+        "plugin:react/all",
+        "plugin:import/errors",
+        "plugin:import/warnings"
     ],
     "parser": "babel-eslint",
     "parserOptions": {
@@ -21,18 +23,60 @@
         "sourceType": "module"
     },
     "plugins": [
+        "jsx-a11y",
         "react"
     ],
     "rules": {
-        "no-console": 0,
-        "no-multi-spaces": 1,
-        "no-multi-str": 2,
-        "no-shadow": 1,
-        "no-shadow-restricted-names": 1,
-        "no-use-before-define": ["error", { "functions": false, "classes": false }],
-        "array-bracket-spacing": 1,
-        "eol-last": 1,
-        "no-trailing-spaces": ["warn", { "skipBlankLines": true }],
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+        // Enforce JSX indentation
+        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent.md
+        "react/jsx-indent": [
+            "error",
+            2
+        ],
+
+        // Validate props indentation in JSX
+        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent-props.md
+        "react/jsx-indent-props": [
+            "error",
+            2
+        ],
+
+        // only .jsx files may have JSX
+        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
+        "react/jsx-filename-extension": [
+            "error",
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+
+        // Prevent usage of unwrapped JSX strings
+        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-literals.md
+        "react/jsx-no-literals": "off",
+
+        // Prevent multiple component definition per file
+        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md
+        "react/no-multi-comp": [
+            "error",
+            {
+                "ignoreStateless": true
+            }
+        ],
+
+        // require a shouldComponentUpdate method, or PureRenderMixin
+        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-optimization.md
+        "react/require-optimization": [
+            "off",
+            {
+                "allowDecorators": []
+            }
+        ],
+
+        // Prevent usage of setState
+        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-set-state.md
+        "react/no-set-state": "off"
     }
 }

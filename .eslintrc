@@ -34,6 +34,13 @@
             2
         ],
 
+        // Validate props indentation in JSX
+        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent-props.md
+        "react/jsx-indent-props": [
+            "error",
+            2
+        ],
+
         // only .jsx files may have JSX
         // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
         "react/jsx-filename-extension": [

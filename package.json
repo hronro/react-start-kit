@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node --presets=latest --plugins=transform-class-properties,transform-object-rest-spread -- server.js",
-    "webpack-build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
+    "build": "run-s clean lint webpack-build",
     "clean": "rimraf dist",
-    "build": "npm run clean && npm run webpack-build"
+    "lint": "eslint src",
+    "webpack-build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
@@ -58,6 +59,7 @@
     "koa-webpack-middleware": "^1.0.3",
     "postcss-loader": "^1.2.1",
     "react-css-modules": "^4.1.0",
+    "npm-run-all": "^4.0.1",
     "react-hot-loader": "^3.0.0-beta.6",
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",

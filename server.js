@@ -16,20 +16,15 @@ const router = getRouter()
 const compiler = webpack(webpackConfig)
 
 app.use(devMiddleware(compiler, {
-  // display no info to console (only warnings and errors)
-  noInfo: true,
-
-  // display nothing to the console
-  quiet: false,
-
   // public path to bind the middleware to
   // use the same as in webpack
   publicPath: webpackConfig.output.publicPath,
 
   // options for formating the statistics
-  stats: {
-    colors: true
-  }
+  stats: 'minimal',
+
+  // enable HMR on the server
+  hot: true
 }))
 
 app.use(hotMiddleware(compiler))

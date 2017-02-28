@@ -5,7 +5,6 @@ import Koa from 'koa'
 import webpack from 'webpack'
 import { devMiddleware, hotMiddleware } from 'koa-webpack-middleware'
 import mount from 'koa-mount'
-import convert from 'koa-convert'
 import serve from 'koa-static'
 import getRouter from 'koa-router'
 
@@ -30,7 +29,7 @@ app.use(devMiddleware(compiler, {
 app.use(hotMiddleware(compiler))
 
 // set static folder
-app.use(mount('/static', new Koa().use(convert(serve(path.join(__dirname, '/static'))))))
+app.use(mount('/static', serve(path.join(__dirname, '/static'))))
 
 app.use(router.routes()).use(router.allowedMethods())
 

@@ -1,14 +1,18 @@
-import path from 'path'
-import fs from 'fs'
+const { resolve } = require('path')
+const { readFileSync } = require('fs')
 
-import Koa from 'koa'
-import webpack from 'webpack'
-import { devMiddleware, hotMiddleware } from 'koa-webpack-middleware'
-import mount from 'koa-mount'
-import serve from 'koa-static'
-import getRouter from 'koa-router'
+const Koa = require('koa')
+const webpack = require('webpack')
+const { devMiddleware, hotMiddleware } = require('koa-webpack-middleware')
+const mount = require('koa-mount')
+const serve = require('koa-static')
+const getRouter = require('koa-router')
 
-import webpackConfig from './webpack.config.dev'
+const webpackConfig = require('./webpack.config.dev')
+
+// koa-webpack-middleware needs `regeneratorRuntime` as a global variable
+// see /node_modules/koa-webpack-middleware/lib/devMiddleware.js
+global.regeneratorRuntime = require('regenerator-runtime')
 
 const app = new Koa()
 const router = getRouter()
@@ -29,14 +33,14 @@ app.use(devMiddleware(compiler, {
 app.use(hotMiddleware(compiler))
 
 // set static folder
-app.use(mount('/static', serve(path.join(__dirname, '/static'))))
+app.use(mount('/static', serve(resolve(__dirname, './static'))))
 
 app.use(router.routes()).use(router.allowedMethods())
 
 // send index.html for any path
 router.get('*', ctx => {
   ctx.type = 'text/html; charset=utf-8'
-  ctx.body = fs.readFileSync(path.join(__dirname, './index.html'))
+  ctx.body = readFileSync(resolve(__dirname, './index.html'))
 })
 
 app.on('error', function (err) {

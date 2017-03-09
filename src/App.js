@@ -30,7 +30,6 @@ class Counter extends Component {
       </div>
     )
   }
-
 }
 
 export default App

@@ -8,6 +8,8 @@
     "build": "run-s clean lint webpack-build",
     "clean": "rimraf dist",
     "lint": "eslint src",
+    "precommit": "run-p lint",
+    "prepush": "run-p lint",
     "webpack-build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js"
   },
   "repository": {
@@ -48,6 +50,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^6.10.0",
     "eslint-plugin-standard": "^2.1.1",
+    "husky": "^0.13.2",
     "inquirer": "^3.0.6",
     "koa": "^2.1.0",
     "koa-mount": "^2.0.0",
